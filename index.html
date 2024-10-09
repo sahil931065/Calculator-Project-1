@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script.js">
+</head>
+<body>
+
+    <div class="body">
+        <div class="display-win">
+            <input id="display">
+        </div>
+        <div class="options">
+            <button class="btn  diff-color" onclick="clearDisplay()">AC</button>
+            <button class="btn diff-color" onclick="remove()">DE</button>
+            <button class="btn diff-color" onclick="signInput('%')">%</button>
+            <button class="btn diff-color" onclick="signInput('/')">/</button>
+
+            <button class="btn" onclick="numInput(7)">7</button>
+            <button class="btn" onclick="numInput(8)">8</button>
+            <button class="btn" onclick="numInput(9)">9</button>
+            <button class="btn diff-color" onclick="signInput('*')">*</button>
+
+            <button class="btn" onclick="numInput(4)">4</button>
+            <button class="btn" onclick="numInput(5)">5</button>
+            <button class="btn" onclick="numInput(6)">6</button>
+            <button class="btn  diff-color" onclick="signInput('-')">-</button>
+
+            <button class="btn" onclick="numInput(1)">1</button>
+            <button class="btn" onclick="numInput(2)">2</button>
+            <button class="btn" onclick="numInput(3)">3</button>
+            <button class="btn  diff-color" onclick="signInput('+')">+</button>
+
+            <button class="btn" onclick="remove()">X</button>
+            <button class="btn" onclick="numInput(0)">0</button>
+            <button class="btn" onclick="signInput('.')">.</button>
+            <button class="btn  diffColor" onclick="assin()">=</button>
+        </div>
+        <script>
+            let display_doc = document.getElementById('display')
+
+
+            let numInput = (value)  => {
+                display_doc.value += value;
+            }
+
+            let signInput = (value)  => {
+                let currentDisplayLast = display_doc.value[display_doc.value.length - 1];
+                if (currentDisplayLast != '+' && currentDisplayLast != '-' &&  currentDisplayLast != '*' && currentDisplayLast != '/' && currentDisplayLast != '%' && currentDisplayLast != '.')
+                    {display_doc.value += value;}
+            }
+
+
+            let  clearDisplay = () => {
+
+                 document.getElementById('display').value = "";
+            }
+
+
+            let remove = () => {
+                let currentDisplay = display_doc.value;
+                if (currentDisplay.length > 0) {
+                    display_doc.value = currentDisplay.slice(0, -1);
+                }
+            }
+
+            let assin = ()  =>{
+                let  currentDisplay = display_doc.value;
+
+                try{
+                    let result = eval(currentDisplay);
+                    display_doc.value = result;
+                }
+                catch{
+                    alert("Invalid expression");
+                }
+
+            }
+
+
+
+            
+        </script>
+        </div>
+    </div>
+</body>
+</html>
